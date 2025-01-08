@@ -1,24 +1,23 @@
 {% set name = "djangorestframework-jwt" %}
 {% set version = "1.11.0" %}
-{% set sha256 = "5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: 5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
 
 build:
   number: 1
   noarch: python
-  script: {{ PYTHON }} -m pip install . --no-deps -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - python {{ python_min }}
+    - setuptools
     - pip
   run:
     - python >={{ python_min }}
